@@ -18,6 +18,16 @@ public class PigLatin{
     // System.out.println(pigLatinBest("cat!"));
     // System.out.println(pigLatinBest("amazing?"));
     // System.out.println(pigLatinBest("apple%"));
+    Scanner n = new Scanner(System.in);
+    while (n.hasNextLine()) {
+      System.out.println();
+      Scanner x = new Scanner(n.nextLine());
+      String FinalReturn = "";
+      while (x.hasNext()) {
+        FinalReturn += (pigLatinBest(x.next()) + " ");
+      }
+      System.out.print(FinalReturn);
+    }
   }
 
   public static String pigLatinSimple(String s){
@@ -45,8 +55,10 @@ public class PigLatin{
     String[] digraph = new String[] {"bl", "br", "ch", "ck", "cl", "cr", "dr", "fl", "fr", "gh", "gl", "gr", "ng", "ph", "pl", "pr", "qu", "sc", "sh", "sk", "sl", "sm", "sn", "sp", "st", "sw", "th", "tr", "tw", "wh", "wr"};
     String y = s.toLowerCase();
     for(int i = 0; i < digraph.length && x == false; i++) {
-      if (y.substring(0,2).equals(digraph[i])) {
-        x = true;
+      if(y.length() > 2) {
+        if (y.substring(0,2).equals(digraph[i])) {
+          x = true;
+        }
       }
     }
     if (x == true) {
