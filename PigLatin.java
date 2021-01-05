@@ -5,11 +5,19 @@ public class PigLatin{
     // System.out.println(pigLatinSimple("pie"));
     // System.out.println(pigLatinSimple("david"));
     // System.out.println(pigLatinSimple("aaron"));
-    System.out.println(pigLatin("the"));
-    System.out.println(pigLatin("check"));
-    System.out.println(pigLatin("skee"));
-    System.out.println(pigLatin("emu"));
-    System.out.println(pigLatin("grade"));
+    // System.out.println(pigLatin("the"));
+    // System.out.println(pigLatin("check"));
+    // System.out.println(pigLatin("skee"));
+    // System.out.println(pigLatin("emu"));
+    // System.out.println(pigLatin("grade"));
+    // System.out.println(pigLatinBest("*emu"));
+    // System.out.println(pigLatinBest("4chan"));
+    // System.out.println(pigLatinBest("fish!"));
+    // System.out.println(pigLatinBest("fish"));
+    // System.out.println(pigLatinBest("the."));
+    // System.out.println(pigLatinBest("cat!"));
+    // System.out.println(pigLatinBest("amazing?"));
+    // System.out.println(pigLatinBest("apple%"));
   }
 
   public static String pigLatinSimple(String s){
@@ -49,6 +57,37 @@ public class PigLatin{
       return (returnString + y.substring(0,2) + "ay");
     } else {
       return pigLatinSimple(y);
+    }
+  }
+
+  public static String pigLatinBest(String s){
+    boolean x = false;
+    String alphabet = "abcdefghijklmnopqrstuvwxyz";
+    String y = s.toLowerCase();
+    for(int i = 0; i < alphabet.length() && x == false; i++) {
+      if( y.charAt(0) == alphabet.charAt(i)) {
+        x = true;
+      }
+    }
+    if(x == false) {
+      return y;
+    } else {
+      boolean z = false;
+      String nonpunct = alphabet + "1234567890";
+      for(int i = 0; i < nonpunct.length() && z == false; i++) {
+        if (y.charAt(y.length() - 1) == nonpunct.charAt(i)) {
+          z = true;
+        }
+      }
+      if (z == true) {
+        return pigLatin(y);
+      } else {
+        String returnString = "";
+        for (int i = 0; i < y.length() - 1; i++) {
+          returnString += y.charAt(i);
+        }
+        return (pigLatin(returnString)) + y.charAt(y.length() - 1);
+      }
     }
   }
 }
